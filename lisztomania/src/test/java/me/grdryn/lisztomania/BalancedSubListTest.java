@@ -1,6 +1,7 @@
 package me.grdryn.lisztomania;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,10 +16,38 @@ public class BalancedSubListTest {
         final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
                 7, 8, 9);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<Integer>(
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
                 originalList, percent);
 
+        System.out.println("Sublist: " + listUnderTest);
         assertEquals(originalList, listUnderTest);
+    }
+
+    @Test
+    public void testFiftyPercent() {
+        final int percent = 50;
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9);
+
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, percent);
+
+        System.out.println("Sublist: " + listUnderTest);
+        assertFalse("50% sublist should not equal original",
+                originalList.equals(listUnderTest));
+        assertEquals("Sublist should be half size of original",
+                Math.round(originalList.size() / 2.0), listUnderTest.size());
+    }
+
+    @Test
+    public void testZeroPercentGivesOne() {
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9);
+
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, 0);
+        System.out.println("Sublist: " + listUnderTest);
+        assertEquals(1, listUnderTest.size());
     }
 
 }
