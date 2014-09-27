@@ -1,5 +1,7 @@
 package me.grdryn.lisztomania;
 
+import static net.java.quickcheck.generator.CombinedGeneratorsIterables.someLists;
+import static net.java.quickcheck.generator.PrimitiveGenerators.integers;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -24,19 +26,22 @@ public class BalancedSubListTest {
     }
 
     @Test
-    public void testFiftyPercent() {
+    public void testFiftyPercentListSizeGreaterThanTwo() {
         final int percent = 50;
-        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
-                7, 8, 9);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
-                originalList, percent);
+        for (final List<Integer> originalList : someLists(integers(), 2)) {
 
-        System.out.println("Sublist: " + listUnderTest);
-        assertFalse("50% sublist should not equal original",
-                originalList.equals(listUnderTest));
-        assertEquals("Sublist should be half size of original",
-                Math.round(originalList.size() / 2.0), listUnderTest.size());
+            final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                    originalList, percent);
+
+            assertFalse("50% sublist should not equal original",
+                    originalList.equals(listUnderTest));
+
+            assertEquals(String.format(
+                    "Failed with original %s and sublist %s", originalList,
+                    listUnderTest),
+                    Math.round(originalList.size() / 2.0), listUnderTest.size());
+        }
     }
 
     @Test
