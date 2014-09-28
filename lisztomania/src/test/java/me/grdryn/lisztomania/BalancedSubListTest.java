@@ -11,8 +11,13 @@ import java.util.List;
 import net.java.quickcheck.Generator;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BalancedSubListTest {
+
+    private static final Logger logger = LoggerFactory
+            .getLogger(BalancedSubListTest.class);
 
     @Test
     public void testHundredPercent() {
@@ -23,7 +28,8 @@ public class BalancedSubListTest {
         final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
                 originalList, percent);
 
-        System.out.println("Sublist: " + listUnderTest);
+        logger.trace("Original: {} :: sublist: {}", originalList, listUnderTest);
+
         assertEquals(originalList, listUnderTest);
     }
 
@@ -52,8 +58,6 @@ public class BalancedSubListTest {
         for (final List<Integer> originalList : someLists(integers(), 1, 1)) {
             final int percentage = integerGenerator.next();
 
-            System.out.print(percentage + " : " + originalList);
-
             final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
                     originalList, percentage);
 
@@ -69,7 +73,9 @@ public class BalancedSubListTest {
 
         final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
                 originalList, 0);
-        System.out.println("Sublist: " + listUnderTest);
+
+        logger.trace("Original: {} :: sublist: {}", originalList, listUnderTest);
+
         assertEquals(1, listUnderTest.size());
     }
 
