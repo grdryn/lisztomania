@@ -79,4 +79,31 @@ public class BalancedSubListTest {
         assertEquals(1, listUnderTest.size());
     }
 
+    @Test
+    public void testSublistBalancedWhenOriginalListSizeIsEven() {
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9);
+
+        final List<Integer> expectedBalancedList = Arrays.asList(0, 2, 4, 6, 8);
+
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, 50);
+
+        assertEquals(expectedBalancedList, listUnderTest);
+    }
+
+    @Test
+    public void testSublistBalancedWhenOriginalListSizeIsOdd() {
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9, 10, 11, 12);
+
+        final List<Integer> expectedBalancedList = Arrays.asList(0, 2, 4, 6, 8,
+                10, 12);
+
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, 50);
+
+        assertEquals(expectedBalancedList, listUnderTest);
+    }
+
 }

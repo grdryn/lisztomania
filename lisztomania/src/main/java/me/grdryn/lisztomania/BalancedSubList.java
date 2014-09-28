@@ -23,7 +23,7 @@ public class BalancedSubList<E> implements List<E> {
         final long elementsForPercentage = getBackingListSize(
                 originalList.size(), percentage);
 
-        populateBackingList(originalList, elementsForPercentage);
+        populateBackingList(originalList, elementsForPercentage, percentage);
     }
 
     private long getBackingListSize(final int originalSize, final int percentage) {
@@ -32,12 +32,14 @@ public class BalancedSubList<E> implements List<E> {
     }
 
     private void populateBackingList(final List<E> inList,
-            final long numElements) {
+            final long numElements, final int percentage) {
 
+        int i = 0;
         int indexOfInList = 0;
 
         while (backingList.size() < numElements) {
-            backingList.add(inList.get(indexOfInList++));
+            backingList.add(inList.get(indexOfInList));
+            indexOfInList = (int) Math.round((1 / (percentage / 100.0)) * ++i);
         }
     }
 
