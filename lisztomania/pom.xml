@@ -10,11 +10,17 @@
     <description>Lists and stuff</description>
     <inceptionYear>2014</inceptionYear>
 
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <developers>
         <developer>
             <id>grdryn</id>
             <name>Gerard Ryan</name>
-            <email>gerard@ryan.lt</email>
             <url>https://blog.grdryn.me</url>
             <timezone>GMT</timezone>
             <properties>
