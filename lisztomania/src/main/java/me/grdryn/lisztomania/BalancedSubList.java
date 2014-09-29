@@ -60,9 +60,9 @@ public class BalancedSubList<E> implements List<E> {
                     "originalList parameter cannot be empty");
         }
 
-        if (percentage < 0.0) {
+        if (percentage < 0.0 || percentage > 100.0) {
             throw new IllegalArgumentException(
-                    "Percentage parameter must be 0 or greater");
+                    "Percentage parameter must be between 0 and 100");
         }
 
     }

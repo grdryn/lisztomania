@@ -141,14 +141,27 @@ public class BalancedSubListTest {
         final List<Integer> originalList = new ArrayList<>();
         final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
                 originalList, 50);
+
         assertEquals(-1, listUnderTest.size());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativePercentage() {
-        final List<Integer> originalList = new ArrayList<>();
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9, 10, 11, 12);
         final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
                 originalList, -50);
+
+        assertEquals(-1, listUnderTest.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void percentageGreaterThan100() {
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9, 10, 11, 12);
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, 101);
+
         assertEquals(-1, listUnderTest.size());
     }
 }
