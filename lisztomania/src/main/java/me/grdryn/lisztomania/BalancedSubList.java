@@ -24,6 +24,8 @@ public class BalancedSubList<E> implements List<E> {
     public BalancedSubList(final List<E> originalList, final double percentage,
             final int shift) {
 
+        validateInputs(originalList, percentage);
+
         backingList = new ArrayList<>();
 
         final List<E> shiftedList = new ArrayList<>(originalList);
@@ -33,6 +35,21 @@ public class BalancedSubList<E> implements List<E> {
                 shiftedList.size(), percentage);
 
         populateBackingList(shiftedList, elementsForPercentage, percentage);
+    }
+
+    private void validateInputs(final List<E> originalList,
+            final double percentage) {
+
+        if (originalList.size() == 0) {
+            throw new IllegalArgumentException(
+                    "originalList parameter cannot be empty");
+        }
+
+        if (percentage < 0.0) {
+            throw new IllegalArgumentException(
+                    "Percentage parameter must be 0 or greater");
+        }
+
     }
 
     private long getBackingListSize(final int originalSize,

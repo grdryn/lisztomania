@@ -5,6 +5,7 @@ import static net.java.quickcheck.generator.PrimitiveGenerators.integers;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -118,5 +119,21 @@ public class BalancedSubListTest {
                 originalList, 50, 1);
 
         assertEquals(expectedBalancedList, listUnderTest);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyList() {
+        final List<Integer> originalList = new ArrayList<>();
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, 50);
+        assertEquals(-1, listUnderTest.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNegativePercentage() {
+        final List<Integer> originalList = new ArrayList<>();
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, -50);
+        assertEquals(-1, listUnderTest.size());
     }
 }
