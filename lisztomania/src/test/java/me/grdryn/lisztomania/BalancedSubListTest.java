@@ -106,4 +106,17 @@ public class BalancedSubListTest {
         assertEquals(expectedBalancedList, listUnderTest);
     }
 
+    @Test
+    public void testConstructorWithShiftParam() {
+        final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
+                7, 8, 9, 10, 11, 12);
+
+        final List<Integer> expectedBalancedList = Arrays.asList(1, 3, 5, 7, 9,
+                11, 0);
+
+        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+                originalList, 50, 1);
+
+        assertEquals(expectedBalancedList, listUnderTest);
+    }
 }

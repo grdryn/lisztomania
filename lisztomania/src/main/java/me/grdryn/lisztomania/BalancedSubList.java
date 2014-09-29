@@ -2,6 +2,7 @@ package me.grdryn.lisztomania;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -17,13 +18,21 @@ public class BalancedSubList<E> implements List<E> {
     private final List<E> backingList;
 
     public BalancedSubList(final List<E> originalList, final int percentage) {
+        this(originalList, percentage, 0);
+    }
+
+    public BalancedSubList(final List<E> originalList, final int percentage,
+            final int shift) {
 
         backingList = new ArrayList<>();
 
-        final long elementsForPercentage = getBackingListSize(
-                originalList.size(), percentage);
+        final List<E> shiftedList = new ArrayList<>(originalList);
+        Collections.rotate(shiftedList, -shift);
 
-        populateBackingList(originalList, elementsForPercentage, percentage);
+        final long elementsForPercentage = getBackingListSize(
+                shiftedList.size(), percentage);
+
+        populateBackingList(shiftedList, elementsForPercentage, percentage);
     }
 
     private long getBackingListSize(final int originalSize, final int percentage) {
