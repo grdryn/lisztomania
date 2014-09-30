@@ -41,7 +41,7 @@ public class BalancedSubListTest {
         final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
                 7, 8, 9);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, percent);
 
         logger.trace("Original: {} :: sublist: {}", originalList, listUnderTest);
@@ -55,7 +55,7 @@ public class BalancedSubListTest {
 
         for (final List<Integer> originalList : someLists(integers(), 2)) {
 
-            final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+            final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                     originalList, percent);
 
             assertFalse("50% sublist should not equal original",
@@ -74,7 +74,7 @@ public class BalancedSubListTest {
         for (final List<Integer> originalList : someLists(integers(), 1, 1)) {
             final int percentage = integerGenerator.next();
 
-            final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+            final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                     originalList, percentage);
 
             assertEquals("Sublist should be 1 when list size is 1", 1,
@@ -87,7 +87,7 @@ public class BalancedSubListTest {
         final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
                 7, 8, 9);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, 0);
 
         logger.trace("Original: {} :: sublist: {}", originalList, listUnderTest);
@@ -102,7 +102,7 @@ public class BalancedSubListTest {
 
         final List<Integer> expectedBalancedList = Arrays.asList(0, 2, 4, 6, 8);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, 50);
 
         assertEquals(expectedBalancedList, listUnderTest);
@@ -116,7 +116,7 @@ public class BalancedSubListTest {
         final List<Integer> expectedBalancedList = Arrays.asList(0, 2, 4, 6, 8,
                 10, 12);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, 50);
 
         assertEquals(expectedBalancedList, listUnderTest);
@@ -130,7 +130,7 @@ public class BalancedSubListTest {
         final List<Integer> expectedBalancedList = Arrays.asList(1, 3, 5, 7, 9,
                 11, 0);
 
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, 50, 1);
 
         assertEquals(expectedBalancedList, listUnderTest);
@@ -139,7 +139,7 @@ public class BalancedSubListTest {
     @Test(expected = IllegalArgumentException.class)
     public void testEmptyList() {
         final List<Integer> originalList = new ArrayList<>();
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, 50);
 
         assertEquals(-1, listUnderTest.size());
@@ -149,7 +149,7 @@ public class BalancedSubListTest {
     public void testNegativePercentage() {
         final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
                 7, 8, 9, 10, 11, 12);
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, -50);
 
         assertEquals(-1, listUnderTest.size());
@@ -159,7 +159,7 @@ public class BalancedSubListTest {
     public void percentageGreaterThan100() {
         final List<Integer> originalList = Arrays.asList(0, 1, 2, 3, 4, 5, 6,
                 7, 8, 9, 10, 11, 12);
-        final BalancedSubList<Integer> listUnderTest = new BalancedSubList<>(
+        final BalancedPercentageSubList<Integer> listUnderTest = new BalancedPercentageSubList<>(
                 originalList, 101);
 
         assertEquals(-1, listUnderTest.size());

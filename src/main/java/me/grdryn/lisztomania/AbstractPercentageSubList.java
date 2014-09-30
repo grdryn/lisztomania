@@ -1,5 +1,5 @@
 /*
- *    Copyright 2014 Gerard Ryan.
+ *    Copyright 2014 Gerard Ryan
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,42 +17,32 @@ package me.grdryn.lisztomania;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+/**
+ * @author grdryn
+ *
+ */
+abstract class AbstractPercentageSubList<E> implements List<E> {
 
-public class BalancedSubList<E> implements List<E> {
+    protected final List<E> backingList;
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(BalancedSubList.class);
+    protected final long percentageSize;
 
-    private final List<E> backingList;
-
-    public BalancedSubList(final List<E> originalList, final double percentage) {
-        this(originalList, percentage, 0);
-    }
-
-    public BalancedSubList(final List<E> originalList, final double percentage,
-            final int shift) {
+    protected AbstractPercentageSubList(final List<E> originalList,
+            final double percentage) {
+        backingList = new ArrayList<>();
 
         validateInputs(originalList, percentage);
 
-        backingList = new ArrayList<>();
+        percentageSize = getBackingListSize(
+                originalList.size(), percentage);
 
-        final List<E> shiftedList = new ArrayList<>(originalList);
-        Collections.rotate(shiftedList, -shift);
-
-        final long elementsForPercentage = getBackingListSize(
-                shiftedList.size(), percentage);
-
-        populateBackingList(shiftedList, elementsForPercentage, percentage);
     }
 
-    private void validateInputs(final List<E> originalList,
+    protected void validateInputs(final List<E> originalList,
             final double percentage) {
 
         if (originalList.size() == 0) {
@@ -67,22 +57,10 @@ public class BalancedSubList<E> implements List<E> {
 
     }
 
-    private long getBackingListSize(final int originalSize,
+    protected long getBackingListSize(final int originalSize,
             final double percentage) {
         final double percentageValue = originalSize * (percentage / 100.0);
         return (percentageValue < 1.0) ? 1 : Math.round(percentageValue);
-    }
-
-    private void populateBackingList(final List<E> inList,
-            final long numElements, final double percentage) {
-
-        int i = 0;
-        int indexOfInList = 0;
-
-        while (backingList.size() < numElements) {
-            backingList.add(inList.get(indexOfInList));
-            indexOfInList = (int) Math.round((1 / (percentage / 100.0)) * ++i);
-        }
     }
 
     @Override
