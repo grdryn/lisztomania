@@ -9,6 +9,7 @@
     <name>Lisztomania</name>
     <description>Get percentage based sub-lists of Lists</description>
     <inceptionYear>2014</inceptionYear>
+    <url>https://github.com/grdryn/lisztomania</url>
 
     <properties>
         <asciidoclet.version>1.5.1</asciidoclet.version>
