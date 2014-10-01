@@ -7,8 +7,8 @@
 
     <name>Lisztomania</name>
     <description>Get percentage based sub-lists of Lists</description>
-    <inceptionYear>2014</inceptionYear>
     <url>https://github.com/grdryn/lisztomania</url>
+    <inceptionYear>2014</inceptionYear>
 
     <properties>
         <asciidoclet.version>1.5.1</asciidoclet.version>
@@ -166,6 +166,33 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
+                <configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <skipDeploy>true</skipDeploy>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>0.10</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                        <phase>site-deploy</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <merge>true</merge>
+                    <server>github</server>
+                    <repositoryName>lisztomania</repositoryName>
+                    <message>Deploy site for version ${project.version}</message>
                 </configuration>
             </plugin>
         </plugins>
