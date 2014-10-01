@@ -3,7 +3,7 @@
 
     <groupId>me.grdryn.lisztomania</groupId>
     <artifactId>lisztomania</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
 
     <name>Lisztomania</name>
     <description>Get percentage based sub-lists of Lists</description>
@@ -38,7 +38,7 @@
         <url>https://github.com/grdryn/lisztomania</url>
         <connection>scm:git:https://github.com/grdryn/lisztomania.git</connection>
         <developerConnection>scm:git:git@github.com:grdryn/lisztomania.git</developerConnection>
-      <tag>lisztomania-0.0.0</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <distributionManagement>
