@@ -27,9 +27,9 @@ import java.util.ListIterator;
  */
 abstract class AbstractPercentageSubList<E> implements List<E> {
 
-    protected final List<E> backingList;
+    final List<E> backingList;
 
-    protected final long percentageSize;
+    final long percentageSize;
 
     protected AbstractPercentageSubList(final List<E> originalList,
             final double percentage) {
@@ -42,7 +42,7 @@ abstract class AbstractPercentageSubList<E> implements List<E> {
 
     }
 
-    protected void validateInputs(final List<E> originalList,
+    void validateInputs(final List<E> originalList,
             final double percentage) {
 
         if (originalList.size() == 0) {
@@ -57,7 +57,7 @@ abstract class AbstractPercentageSubList<E> implements List<E> {
 
     }
 
-    protected long getBackingListSize(final int originalSize,
+    long getBackingListSize(final int originalSize,
             final double percentage) {
         final double percentageValue = originalSize * (percentage / 100.0);
         return (percentageValue < 1.0) ? 1 : Math.round(percentageValue);
