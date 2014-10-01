@@ -10,6 +10,10 @@
     <description>Get percentage based sub-lists of Lists</description>
     <inceptionYear>2014</inceptionYear>
 
+    <properties>
+        <asciidoclet.version>1.5.1</asciidoclet.version>
+    </properties>
+
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>
@@ -119,6 +123,24 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <source>1.7</source>
+                    <doclet>org.asciidoctor.Asciidoclet</doclet>
+                    <docletArtifact>
+                        <groupId>org.asciidoctor</groupId>
+                        <artifactId>asciidoclet</artifactId>
+                        <version>${asciidoclet.version}</version>
+                    </docletArtifact>
+                    <overview>src/main/java/overview.adoc</overview>
+                    <additionalparam>
+                        --base-dir ${project.basedir}
+                        --attribute "name=${project.name}"
+                        --attribute
+                        "version=${project.version}"
+                        --attribute
+                        "title-link=http://example.com[${project.name}${project.version}]"
+                    </additionalparam>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
