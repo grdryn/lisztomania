@@ -19,8 +19,53 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * = RandomPercentageSubList
+ *
+ * Use this class to get a {@link List} of elements picked from an existing
+ * {@link List}. The chosen elements are randomly selected from `originalList`,
+ * with the number of chosen elements decided by the `percentage` parameter to
+ * the {@link RandomPercentageSubList#RandomPercentageSubList(List, double)
+ * constructor}.
+ *
+ * For example, choosing to get 40% from a {@link List} of 10 elements would
+ * produce a {@link List} of 4 elements, each chosen from the `originalList`:
+ *
+ * [source,java]
+ * --
+ *
+ * import java.util.List;
+ * import me.grdryn.lisztomania.RandomPercentageSubList;
+ *
+ * class MyClass {
+ *
+ *     public static void main(String[] args) {
+ *         List<Integer> tenItems = Arrays.asList(34, -5, 7, 2, 1, 0, 57, -1, 3, 10);
+ *         List<Integer> fiveAtRandom = new RandomPercentageSubList<>(tenItems, 40);
+ *
+ *         assert fiveAtRandom.size() == 5;
+ *
+ *         for (Integer item : fiveAtRandom) {
+ *             assert tenItems.contains(item);
+ *         }
+ *     }
+ * }
+ *
+ * --
+ *
+ * @author Gerard Ryan
+ */
 public class RandomPercentageSubList<E> extends AbstractPercentageSubList<E> {
 
+    /**
+     * Creates a List of elements from `originalList` at random, of `percentage`
+     * percent of the `originalList.
+     *
+     * @param originalList
+     *            The {@link List} to choose elements from
+     * @param percentage
+     *            The percentage of elements from `originalList` to choose
+     */
     public RandomPercentageSubList(final List<E> originalList,
             final double percentage) {
 
